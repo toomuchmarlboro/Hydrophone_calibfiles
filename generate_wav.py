@@ -24,8 +24,14 @@ def generate_sweep_wav(filename="wav_outputs/sweep_100hz_to_10kHz.wav", duration
     # Generate time array
     t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
     
+    from scipy.signal.windows import tukey
+    
     # Generate the frequency sweep
     sweep_signal = chirp(t, f0=f0, f1=f1, t1=duration, method=method)
+    
+    # Apply a Tukey window to smooth the start and end of the sweep, avoiding clicks
+    window = tukey(len(sweep_signal), alpha=0.05)
+    sweep_signal = sweep_signal * window
     
     # Use 32-bit floating point format for highest precision (lossless, virtually no quantization noise)
     normalized_signal = np.float32(sweep_signal)

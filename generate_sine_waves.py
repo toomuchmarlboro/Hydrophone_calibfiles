@@ -22,8 +22,15 @@ def generate_sine_wave(frequency, duration=20.0, sample_rate=48000, output_dir="
     # Generate time array
     t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
     
+    from scipy.signal.windows import tukey
+    
     # Generate the sine wave
     sine_signal = np.sin(2 * np.pi * frequency * t)
+    
+    # Apply a Tukey window (fade-in/fade-out) to prevent spectral splatter (clicks) at the boundaries
+    # alpha=0.05 on 20s means a 0.5s smooth fade-in and 0.5s fade-out, keeping the tone pure.
+    window = tukey(len(sine_signal), alpha=0.05)
+    sine_signal = sine_signal * window
     
     # Use 32-bit floating point format for highest precision (lossless)
     normalized_signal = np.float32(sine_signal)
