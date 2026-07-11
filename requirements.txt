@@ -1,0 +1,6 @@
+#please run in terminal "pip install -r requirements.txt"
+
+numpy
+scipy
+matplotlib
+ipykernel
