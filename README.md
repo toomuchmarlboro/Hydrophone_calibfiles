@@ -28,6 +28,30 @@ Since our actual calibration distance is **2.5 meters**, we easily satisfy both 
 
 ---
 
+## Recording & Naming Convention
+
+When recording the hydrophone responses through the Ui24R, export each channel as a separate mono `.wav` file. 
+
+Place all the recorded `.wav` files into a folder named `recorded_wavs/` in the root of this project, and use the following naming convention:
+- `hydrophone_01.wav`
+- `hydrophone_02.wav`
+- ... up to `hydrophone_20.wav`
+
+Once the files are in the directory with this exact naming convention, you can open and run all cells in `analyze_calibration.ipynb` to automatically align the recordings and plot their frequency response comparisons.
+
+## Aturan Penamaan File & Analisis
+
+Saat merekam respons hidrofon melalui Ui24R, ekspor setiap saluran (channel) sebagai file `.wav` mono yang terpisah.
+
+Tempatkan semua file `.wav` hasil rekaman ke dalam folder bernama `recorded_wavs/` di direktori utama proyek ini, dan gunakan aturan penamaan berikut:
+- `hydrophone_01.wav`
+- `hydrophone_02.wav`
+- ... hingga `hydrophone_20.wav`
+
+Setelah file-file berada di direktori tersebut dengan penamaan yang sesuai, Anda dapat membuka dan menjalankan semua *cell* di `analyze_calibration.ipynb` untuk menyelaraskan rekaman secara otomatis dan memplot perbandingan respons frekuensinya.
+
+---
+
 ## Calibration Procedure (English)
 
 1. **Setup:** Connect the Aquarian S1ex hydrophone to the input of the Soundcraft Ui24R soundcard. Prepare the dodecahedron speaker with its separate playback/amplifier system.
