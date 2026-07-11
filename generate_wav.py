@@ -42,7 +42,8 @@ def generate_sweep_wav(filename="wav_outputs/sweep_100hz_to_10kHz.wav", duration
 
     # Plot the ground truth spectrogram
     print("Generating ground truth spectrogram...")
-    f, t_spec, Sxx = spectrogram(normalized_signal, sample_rate, nperseg=2048, noverlap=1024)
+    # Use 'hann' window to prevent spectral leakage visual artifacts
+    f, t_spec, Sxx = spectrogram(normalized_signal, sample_rate, window='hann', nperseg=2048, noverlap=1024)
     
     plt.figure(figsize=(12, 6))
     # Add small epsilon to avoid log10(0) issues

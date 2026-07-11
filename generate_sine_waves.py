@@ -41,7 +41,8 @@ def generate_sine_wave(frequency, duration=20.0, sample_rate=48000, output_dir="
 
     # Plot the ground truth spectrogram
     print(f"Generating ground truth spectrogram for {frequency} Hz...")
-    f, t_spec, Sxx = spectrogram(normalized_signal, sample_rate, nperseg=2048, noverlap=1024)
+    # Use 'hann' window to prevent spectral leakage visual artifacts (default 'tukey' has high sidelobes)
+    f, t_spec, Sxx = spectrogram(normalized_signal, sample_rate, window='hann', nperseg=2048, noverlap=1024)
     
     plt.figure(figsize=(12, 6))
     plt.pcolormesh(t_spec, f, 10 * np.log10(Sxx + 1e-10), shading='gouraud', cmap='viridis')
